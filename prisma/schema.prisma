@@ -7,10 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model SurfSpot {
-  id        String @id @default(cuid())
+model Habit {
+  id        Int         @id @default(autoincrement())
   name      String
-  country   String @default("UK")
-  latitude  Float
-  longitude Float
+  HabitData HabitData[]
+}
+
+model HabitData {
+  id        Int      @id @default(autoincrement())
+  habit     Habit    @relation(fields: [habitId], references: [id])
+  habitId   Int
+  date      DateTime
+  completed Boolean
 }
