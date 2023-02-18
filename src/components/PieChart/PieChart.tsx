@@ -11,12 +11,15 @@ interface Props {
 
 export const PieChart = ({ progress }: Props) => {
   const remainder = 100 - progress;
+  const greaterThanProgress = remainder > progress;
   const data = [progress, remainder];
   return (
     <svg
       width={dim}
       height={dim}
-      transform={remainder > progress ? "scale(-1,1)" : undefined}
+      className={classNames({
+        "-scale-x-100 scale-y-100": greaterThanProgress,
+      })}
     >
       <g transform={`translate(${dim / 2}, ${dim / 2})`}>
         <Pie
@@ -31,13 +34,14 @@ export const PieChart = ({ progress }: Props) => {
           {({ arcs, path }) => (
             <g>
               {arcs.map((arc, i) => {
-                const isRemainder = i >0;
+                const isRemainder = i > 0;
                 return (
                   <g key={`pie-arc-${i}`}>
                     <path
                       className={classNames("", {
-                        "fill-pink-600": !isRemainder,
-                        "fill-indigo-700": isRemainder,
+                        "fill-zinc-700": isRemainder,
+                        "fill-rose-500": !isRemainder && greaterThanProgress,
+                        "fill-emerald-500": !isRemainder && !greaterThanProgress,
                       })}
                       d={path(arc) as string}
                     />
