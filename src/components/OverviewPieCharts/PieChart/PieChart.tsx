@@ -7,12 +7,14 @@ const dim = 60;
 
 interface Props {
   progress: number;
+  target: number;
 }
 
-export const PieChart = ({ progress }: Props) => {
+export const PieChart = ({ progress, target }: Props) => {
   const remainder = 100 - progress;
   const greaterThanProgress = remainder > progress;
-  const data = [progress, remainder];
+  const pieData = progress === 100 ? [progress] : [progress, remainder];
+  const onTarget = progress >= target;
   return (
     <svg
       width={dim}
@@ -25,11 +27,18 @@ export const PieChart = ({ progress }: Props) => {
         <Pie
           width={dim}
           height={dim}
-          outerRadius={radius}
-          innerRadius={radius - donutThickness}
-          data={data}
+          outerRadius={({ data }, i) => {
+            return data === pieData[0] ? radius : radius - 3;
+          }}
+          innerRadius={({ data }, i) => {
+            return data === pieData[0]
+              ? radius - donutThickness
+              : radius - donutThickness / 2 - 2;
+          }}
+          data={pieData}
           pieValue={(d) => d}
-          fill={"green"}
+          cornerRadius={1}
+          padAngle={0.05}
         >
           {({ arcs, path }) => (
             <g>
@@ -40,8 +49,8 @@ export const PieChart = ({ progress }: Props) => {
                     <path
                       className={classNames("", {
                         "fill-zinc-700": isRemainder,
-                        "fill-rose-500": !isRemainder && greaterThanProgress,
-                        "fill-emerald-500": !isRemainder && !greaterThanProgress,
+                        "fill-rose-500": !isRemainder && !onTarget,
+                        "fill-teal-500": !isRemainder && onTarget,
                       })}
                       d={path(arc) as string}
                     />
