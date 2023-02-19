@@ -1,7 +1,7 @@
-"use client";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { OverviewPieCharts } from "../components/OverviewPieCharts/OverviewPieCharts";
+import { WeeklyProgress } from "../components/WeeklyProgress/WeeklyProgress";
 
 const habits = [
   { name: "Meditate", daysCompleted: 1, target: 5 },
@@ -14,7 +14,6 @@ const habits = [
   { name: "Eat Healthy", daysCompleted: 7, target: 4 },
 ];
 
-const dim = 8;
 const Home: NextPage = () => {
   return (
     <>
@@ -24,53 +23,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="space-y-4">
-        <OverviewPieCharts />
-        <article className="max-w-max space-y-4 rounded-sm border border-zinc-800 p-4">
-          <header className="border-b border-zinc-800 pb-1 text-sm font-medium">
-            Weekly Progress
-          </header>
-          <section>
-            <table className="border border-zinc-800 bg-zinc-800 text-left">
-              <thead>
-                <tr className="divide">
-                  <th className="p-2">Habit</th>
-                  <th className="w-12 text-center">Mon</th>
-                  <th className="w-12 text-center">Tue</th>
-                  <th className="w-12 text-center">Wed</th>
-                  <th className="w-12 text-center">Thu</th>
-                  <th className="w-12 text-center">Fri</th>
-                  <th className="w-12 text-center">Sat</th>
-                  <th className="w-12 text-center">Sun</th>
-                </tr>
-              </thead>
-              <tbody>
-                {habits.map(({ name }) => (
-                  <>
-                    <tr className="border-y border-zinc-800">
-                      <td className="p-2">{name}</td>
-                      {[...Array(7)].map((day) => (
-                        <td key={day} className="px-5">
-                          <svg width={dim} height={dim}>
-                            <circle
-                              className={
-                                Math.random() < 0.5
-                                  ? "fill-rose-500"
-                                  : "fill-teal-500"
-                              }
-                              r={dim / 2}
-                              cy={dim / 2}
-                              cx={dim / 2}
-                            ></circle>
-                          </svg>
-                        </td>
-                      ))}
-                    </tr>
-                  </>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        </article>
+        <OverviewPieCharts habits={habits} />
+        <WeeklyProgress habits={habits} />
       </div>
     </>
   );

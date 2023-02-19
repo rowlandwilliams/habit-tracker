@@ -35,8 +35,12 @@ export const OverviewPieChartsCard = ({
         />
       </div>
       <div className="flex justify-between">
-        <OverviewPieChartsCardTargetOrProgressSummary nDays={target} />
         <OverviewPieChartsCardTargetOrProgressSummary
+          title="Target"
+          nDays={target}
+        />
+        <OverviewPieChartsCardTargetOrProgressSummary
+          title="Progress"
           nDays={daysCompleted}
           targetReached={targetReached}
           isProgress
