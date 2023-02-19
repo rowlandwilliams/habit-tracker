@@ -21,10 +21,10 @@ export const OverviewPieChartsCardTitleAndTag = ({
       </h1>
       <p
         className={classNames(
-          "w-24 max-w-max rounded-2xl border px-2 text-center font-medium",
+          "w-24 max-w-max rounded-2xl bg-opacity-[0.15] px-2 py-[1px] text-xs text-center font-medium",
           {
-            "border-teal-500 text-teal-500": completed,
-            "border-rose-500 text-rose-500": !completed,
+            "bg-teal-500 text-teal-500": completed,
+            "bg-rose-500 text-rose-500": !completed,
           }
         )}
       >

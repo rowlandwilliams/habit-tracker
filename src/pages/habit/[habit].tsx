@@ -1,4 +1,6 @@
 import { type NextPage } from "next";
+import type { ReactElement } from "react";
+import { AuthLayout } from "../../components/AuthLayout/AuthLayout";
 
 const Habit: NextPage = () => {
   return (
@@ -7,5 +9,7 @@ const Habit: NextPage = () => {
     </article>
   );
 };
+
+Habit.getLayout = (page: ReactElement) => <AuthLayout>{page}</AuthLayout>;
 
 export default Habit;

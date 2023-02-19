@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { WeeklyProgressTableDayStatusIcon } from "./WeeklyProgressTableDayStatusIcon/WeeklyProgressTableDayStatusIcon";
 
 interface Props {
@@ -12,12 +13,12 @@ interface Props {
 export const WeeklyProgressTable = ({ days, habits }: Props) => {
   return (
     <section className="overflow-hidden rounded-sm">
-      <table className="bg-zinc-800 text-left">
+      <table className="bg-base-blue text-left">
         <thead>
-          <tr className="divide">
-            <th className="p-2">Habit</th>
+          <tr>
+            <th className="w-44 p-2 font-medium">Habit</th>
             {days.map((day) => (
-              <th className="w-12 text-center" key={day}>
+              <th className="w-12 text-center font-medium" key={day}>
                 {day}
               </th>
             ))}
@@ -27,7 +28,10 @@ export const WeeklyProgressTable = ({ days, habits }: Props) => {
           {habits.map(({ name }) => (
             <>
               <tr className="border-y border-zinc-800">
-                <td className="p-2">{name}</td>
+                <td className="flex gap-x-2 p-2">
+                  <Image src="/habit.svg" width={10} height={10} alt="habit" />
+                  {name}
+                </td>
                 {days.map((day) => (
                   <td key={day} className="px-5">
                     <WeeklyProgressTableDayStatusIcon

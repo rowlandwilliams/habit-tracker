@@ -1,5 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import type { ReactElement } from "react";
+import { AuthLayout } from "../components/AuthLayout/AuthLayout";
 import { OverviewPieCharts } from "../components/OverviewPieCharts/OverviewPieCharts";
 import { WeeklyProgress } from "../components/WeeklyProgress/WeeklyProgress";
 
@@ -24,10 +26,14 @@ const Home: NextPage = () => {
       </Head>
       <div className="space-y-4">
         <OverviewPieCharts habits={habits} />
-        <WeeklyProgress habits={habits} />
+        <section className="flex gap-x-4">
+          <WeeklyProgress habits={habits} /> <WeeklyProgress habits={habits} />
+        </section>
       </div>
     </>
   );
 };
+
+Home.getLayout = (page: ReactElement) => <AuthLayout>{page}</AuthLayout>;
 
 export default Home;

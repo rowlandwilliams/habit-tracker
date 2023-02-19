@@ -1,4 +1,4 @@
-import { Poppins } from "@next/font/google";
+import { Poppins, Montserrat } from "@next/font/google";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
@@ -48,15 +48,15 @@ interface Props {
   children: ReactNode;
 }
 
-export const Layout = ({ children }: Props) => {
+export const AuthLayout = ({ children }: Props) => {
   const router = useRouter();
   const { pathname } = router;
   return (
     <ClientOnly>
       <main
-        className={`flex h-screen bg-zinc-900 text-xs font-light text-gray-200 ${poppins.className}`}
+        className={`flex h-screen bg-mid-blue text-xs font-light text-zinc-300 ${poppins.className}`}
       >
-        <article className="h-full w-52 bg-zinc-800 flex-shrink-0">
+        <article className="h-full w-52 bg-dark-blue flex-shrink-0">
           <Logo />
           <nav className=" ">
             {tabs.map(({ title, href, icon }) => (
@@ -65,7 +65,7 @@ export const Layout = ({ children }: Props) => {
                 className={classNames(
                   "relative cursor-pointer rounded-md py-4 text-sm",
                   {
-                    "bg-gradient-to-l from-zinc-700 font-normal":
+                    "bg-gradient-to-l from-base-blue font-normal":
                       pathname.slice(1) === href,
                     "text-gray-400 hover:text-gray-200":
                       pathname.slice(1) !== href,
@@ -93,10 +93,10 @@ export const Layout = ({ children }: Props) => {
           <section className="flex items-center justify-between border-b border-zinc-800 pb-2 font-medium">
             <h1 className="text-base">Overview</h1>
             <section className="flex items-center gap-x-2">
-              <div className="rounded-sm bg-indigo-500 p-2 text-zinc-800">
+              <div className="rounded-sm bg-indigo-500 bg-opacity-[0.15] text-indigo-500 p-2">
                 Upgrade
               </div>
-              <div className="mr-2 rounded-sm border border-teal-500 p-2 text-teal-500">
+              <div className="mr-2 rounded-sm bg-teal-500 bg-opacity-[0.15] p-2 text-teal-500">
                 12 trial days remaining
               </div>
 

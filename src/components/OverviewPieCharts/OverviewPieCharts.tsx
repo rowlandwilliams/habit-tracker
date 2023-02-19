@@ -10,8 +10,8 @@ interface Props {
 
 export const OverviewPieCharts = ({ habits }: Props) => {
   return (
-    <article className="space-y-4 rounded-sm border border-zinc-800 p-4">
-      <header className="border-b border-zinc-800 pb-1 text-sm font-medium">
+    <article className="space-y-4 rounded-sm bg-dark-blue p-4">
+      <header className="text-sm font-medium">
         Currently tracking {habits.length} habits for this week
       </header>
       <section className="xl: mx-auto grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">

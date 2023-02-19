@@ -1,32 +1,22 @@
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
 import { type AppType } from "next/app";
-
+import type { ReactNode } from "react";
+import "../styles/globals.css";
 import { api } from "../utils/api";
 
-import { Poppins } from "@next/font/google";
-import { Layout } from "../components/Layout/Layout";
-import "../styles/globals.css";
+export type Page<P = object> = NextPage<P> & {
+  getLayout?: (page: ReactNode) => ReactNode;
+};
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+type Props = AppProps & {
+  Component: Page;
+};
 
-console.log(poppins);
-const MyApp: AppType = ({ Component, pageProps }) => {
-  return (
-    <>
-      <style jsx global>
-        {`
-          :root {
-            --poppins-font: ${poppins.style.fontFamily};
-          }
-        `}
-      </style>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
-  );
+const MyApp: AppType = ({ Component, pageProps }: Props) => {
+  const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
+
+  return <>{getLayout(<Component {...pageProps} />)}</>;
 };
 
 export default api.withTRPC(MyApp);

@@ -21,7 +21,7 @@ export const OverviewPieChartsCard = ({
     <Link
       href={`/habit/${name.toLowerCase()}`}
       key={name}
-      className="space-y-4 rounded-sm border border-transparent bg-zinc-800 p-4 hover:border-zinc-700"
+      className="space-y-4 rounded-sm border border-transparent bg-base-blue p-4 hover:border-zinc-700"
     >
       <div className="flex justify-between">
         <OverviewPieChartsCardPieChart
