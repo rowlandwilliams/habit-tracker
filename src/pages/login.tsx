@@ -13,10 +13,10 @@ const Login: NextPage = () => {
   };
   return (
     <section className="flex h-screen items-center justify-center">
-      <div className="flex max-h-[500px] w-full flex-col items-center space-y-4 rounded-sm border border-zinc-700 bg-zinc-800 p-4 text-gray-200 md:w-96">
+      <div className="flex max-h-[500px] w-full flex-col items-center space-y-4 rounded-sm bg-mid-blue p-4 text-gray-200 md:w-96">
         <Logo />
         <form
-          className="flex w-full flex-col items-center space-y-4"
+          className="flex w-full flex-col items-center space-y-8"
           onSubmit={handleSubmit}
         >
           <section className="w-full space-y-2">
@@ -42,7 +42,7 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 id="email-address-icon"
-                className="block w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Email"
               />
             </div>
@@ -68,14 +68,14 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 id="email-address-icon"
-                className="block w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Password"
               />
             </div>
           </section>
           <button
             type="submit"
-            className="rounded-sm bg-indigo-500 px-4 py-2 font-medium text-white"
+            className="rounded-sm bg-indigo-500 bg-opacity-[0.15] text-indigo-500 px-4 py-2 font-medium text-white"
           >
             Sign In
           </button>

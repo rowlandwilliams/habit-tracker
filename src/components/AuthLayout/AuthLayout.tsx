@@ -1,4 +1,4 @@
-import { Poppins, Montserrat } from "@next/font/google";
+import { Poppins } from "@next/font/google";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,7 +42,7 @@ const tabs = [
     href: "news-feed",
     icon: <MindfulMomentIcon />,
   },
-]
+];
 
 interface Props {
   children: ReactNode;
@@ -54,9 +54,9 @@ export const AuthLayout = ({ children }: Props) => {
   return (
     <ClientOnly>
       <main
-        className={`flex h-screen bg-mid-blue text-xs font-light text-zinc-300 ${poppins.className}`}
+        className={`flex h-screen bg-dark-blue text-xs font-light text-zinc-300 ${poppins.className}`}
       >
-        <article className="h-full w-52 bg-dark-blue flex-shrink-0">
+        <article className="h-full w-64 flex-shrink-0 bg-mid-blue">
           <Logo />
           <nav className=" ">
             {tabs.map(({ title, href, icon }) => (
@@ -93,7 +93,7 @@ export const AuthLayout = ({ children }: Props) => {
           <section className="flex items-center justify-between border-b border-zinc-800 pb-2 font-medium">
             <h1 className="text-base">Overview</h1>
             <section className="flex items-center gap-x-2">
-              <div className="rounded-sm bg-indigo-500 bg-opacity-[0.15] text-indigo-500 p-2">
+              <div className="rounded-sm bg-indigo-500 bg-opacity-[0.15] p-2 text-indigo-500">
                 Upgrade
               </div>
               <div className="mr-2 rounded-sm bg-teal-500 bg-opacity-[0.15] p-2 text-teal-500">

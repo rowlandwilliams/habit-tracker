@@ -27,7 +27,7 @@ export const WeeklyProgressTable = ({ days, habits }: Props) => {
         <tbody>
           {habits.map(({ name }) => (
             <>
-              <tr className="border-y border-zinc-800">
+              <tr>
                 <td className="flex gap-x-2 p-2">
                   <Image src="/habit.svg" width={10} height={10} alt="habit" />
                   {name}

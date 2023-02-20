@@ -10,7 +10,7 @@ interface Props {
 
 export const OverviewPieCharts = ({ habits }: Props) => {
   return (
-    <article className="space-y-4 rounded-sm bg-dark-blue p-4">
+    <article className="space-y-4 rounded-sm bg-mid-blue p-4">
       <header className="text-sm font-medium">
         Currently tracking {habits.length} habits for this week
       </header>
