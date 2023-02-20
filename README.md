@@ -26,7 +26,7 @@ To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the fo
 - Run `npm install`
 - Create a local postgres database and remember its name
 - Create a .env file at root and copy over the sample environment variables from .env.example. 
-- Replace <your-local-database-name> with database name in DATABASE_URL in .env
+- Replace `<your-local-database-name>` with database name in DATABASE_URL in .env
 - Sync your database (creates tables based on prisma schame) - `npx prisma db push`
 - Seed your database with sample data - `npx prisma db seed`
 - Fire it up - `npm run dev`
