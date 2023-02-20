@@ -1,9 +1,11 @@
 import { Poppins } from "@next/font/google";
 import classNames from "classnames";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { ReactNode } from "react";
+import { useEffect } from "react";
 import { ClientOnly } from "../ClientOnly";
 import { Chevron } from "./Chevron";
 import { Logo } from "./Logo/Logo";
@@ -49,72 +51,84 @@ interface Props {
 }
 
 export const AuthLayout = ({ children }: Props) => {
+  const { status } = useSession();
   const router = useRouter();
   const { pathname } = router;
-  return (
-    <ClientOnly>
-      <main
-        className={`flex h-screen bg-dark-blue text-xs font-light text-zinc-300 ${poppins.className}`}
-      >
-        <article className="h-full w-64 flex-shrink-0 bg-mid-blue">
-          <Logo />
-          <nav className=" ">
-            {tabs.map(({ title, href, icon }) => (
-              <div
-                key={title}
-                className={classNames(
-                  "relative cursor-pointer rounded-md py-4 text-sm",
-                  {
-                    "bg-gradient-to-l from-base-blue font-normal":
-                      pathname.slice(1) === href,
-                    "text-gray-400 hover:text-gray-200":
-                      pathname.slice(1) !== href,
-                  }
-                )}
-              >
-                {pathname.slice(1) === href && (
-                  <div className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full border border-purple p-0.5 ">
-                    <div className="h-1 w-1 rounded-full bg-purple"></div>
-                  </div>
-                )}
-                <Link
-                  href={`/${href}`}
-                  passHref
-                  className="flex items-center gap-x-2 px-5"
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status]);
+
+  console.log(status);
+
+  if (status === "authenticated") {
+    return (
+      <ClientOnly>
+        <main
+          className={`flex h-screen bg-dark-blue text-xs font-light text-zinc-300 ${poppins.className}`}
+        >
+          <article className="h-full w-64 flex-shrink-0 bg-mid-blue">
+            <Logo />
+            <nav className=" ">
+              {tabs.map(({ title, href, icon }) => (
+                <div
+                  key={title}
+                  className={classNames(
+                    "relative cursor-pointer rounded-md py-4 text-sm",
+                    {
+                      "bg-gradient-to-l from-base-blue font-normal":
+                        pathname.slice(1) === href,
+                      "text-gray-400 hover:text-gray-200":
+                        pathname.slice(1) !== href,
+                    }
+                  )}
                 >
-                  {icon}
-                  {title}
-                </Link>
-              </div>
-            ))}
-          </nav>
-        </article>
-        <article className="flex-grow space-y-4 px-4 py-3">
-          <section className="flex items-center justify-between border-b border-zinc-800 pb-2 font-medium">
-            <h1 className="text-base">Overview</h1>
-            <section className="flex items-center gap-x-2">
-              <div className="rounded-sm bg-purple bg-op0.15] p-2 text-white">
-                Upgrade
-              </div>
-              <div className="mr-2 rounded-sm bg-yellow-500 bg-opacity-[0.15] p-2 text-yellow-500">
-                12 trial days remaining
-              </div>
-              <div className="flex items-center gap-x-2 border-l border-zinc-800 pl-4">
-                <Image
-                  src="/avatar.jpeg"
-                  width={30}
-                  alt="avatar"
-                  height={30}
-                  className="rounded-full"
-                />
-                <p>Rowland Williams</p>
-                <Chevron visible={false} />
-              </div>
+                  {pathname.slice(1) === href && (
+                    <div className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full border border-purple p-0.5 ">
+                      <div className="h-1 w-1 rounded-full bg-purple"></div>
+                    </div>
+                  )}
+                  <Link
+                    href={`/${href}`}
+                    passHref
+                    className="flex items-center gap-x-2 px-5"
+                  >
+                    {icon}
+                    {title}
+                  </Link>
+                </div>
+              ))}
+            </nav>
+          </article>
+          <article className="flex-grow space-y-4 px-4 py-3">
+            <section className="flex items-center justify-between border-b border-zinc-800 pb-2 font-medium">
+              <h1 className="text-base">Overview</h1>
+              <section className="flex items-center gap-x-2">
+                <div className="bg-op0.15] rounded-sm bg-purple p-2 text-white">
+                  Upgrade
+                </div>
+                <div className="mr-2 rounded-sm bg-yellow-500 bg-opacity-[0.15] p-2 text-yellow-500">
+                  12 trial days remaining
+                </div>
+                <div className="flex items-center gap-x-2 border-l border-zinc-800 pl-4">
+                  <Image
+                    src="/avatar.jpeg"
+                    width={30}
+                    alt="avatar"
+                    height={30}
+                    className="rounded-full"
+                  />
+                  <p>Rowland Williams</p>
+                  <Chevron visible={false} />
+                </div>
+              </section>
             </section>
-          </section>
-          <section>{children}</section>
-        </article>
-      </main>
-    </ClientOnly>
-  );
+            <section>{children}</section>
+          </article>
+        </main>
+      </ClientOnly>
+    );
+  }
 };

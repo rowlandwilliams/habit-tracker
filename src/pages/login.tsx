@@ -1,23 +1,40 @@
 import { type NextPage } from "next";
-import { Router, useRouter } from "next/router";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { Logo } from "../components/AuthLayout/Logo/Logo";
 
 const Login: NextPage = () => {
-  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false);
+  const { error } = useRouter().query;
 
-  const handleSubmit = async () => {
-    await Router.push({
-      pathname: "/about",
-      query: { name: "Someone" },
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    // router.push("/");
+
+    const res = await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
     });
+
+    console.log(res);
   };
+
+  if (error) return <div className="text-white">Error</div>;
+
+  console.log(email, password);
   return (
     <section className="flex h-screen items-center justify-center">
       <div className="flex max-h-[500px] w-full flex-col items-center space-y-4 rounded-sm bg-mid-blue p-4 text-gray-200 md:w-96">
         <Logo />
         <form
           className="flex w-full flex-col items-center space-y-8"
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}
         >
           <section className="w-full space-y-2">
             <label
@@ -40,10 +57,12 @@ const Login: NextPage = () => {
                 </svg>
               </div>
               <input
-                type="text"
+                type="email"
+                required
                 id="email-address-icon"
                 className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-purple focus:ring-purple"
                 placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <label
@@ -66,10 +85,12 @@ const Login: NextPage = () => {
                 </svg>
               </div>
               <input
-                type="text"
+                type="password"
+                required
                 id="email-address-icon"
                 className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-purple focus:ring-purple"
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </section>
