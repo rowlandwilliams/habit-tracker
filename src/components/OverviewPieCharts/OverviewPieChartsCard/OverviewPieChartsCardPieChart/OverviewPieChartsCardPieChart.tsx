@@ -4,7 +4,7 @@ import classNames from "classnames";
 const radius = 30;
 const donutThickness = 5;
 const dim = 60;
-const innerPadding = 2;
+const innerPadding = 4;
 
 interface Props {
   progressPc: number;
@@ -51,7 +51,7 @@ export const OverviewPieChartsCardPieChart = ({
                     <g key={`pie-arc-${i}`}>
                       <path
                         className={classNames("", {
-                          "fill-zinc-800": isRemainder,
+                          "fill-[#262E4F]": isRemainder,
                           "fill-rose-500": !isRemainder && !onTarget,
                           "fill-teal-500": !isRemainder && onTarget,
                         })}
@@ -88,8 +88,8 @@ export const OverviewPieChartsCardPieChart = ({
                     <g key={`pie-arc-${i}`}>
                       <path
                         className={classNames("", {
-                          "fill-transparent": isRemainder,
-                          "fill-indigo-500": !isRemainder,
+                          "fill-[#262E4F]": isRemainder,
+                          "fill-purple": !isRemainder,
                         })}
                         d={path(arc) as string}
                       />

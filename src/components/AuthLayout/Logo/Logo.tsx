@@ -4,7 +4,7 @@ export const Logo = () => {
   return (
     <Link href={"/"} className="flex items-start gap-x-1 p-4">
       <section className=" flex items-center gap-x-2">
-        <div className="max-w-max rounded-full bg-gradient-to-b from-indigo-500 to-teal-500">
+        <div className="max-w-max rounded-full bg-gradient-to-b from-purple to-teal-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={22}

@@ -14,7 +14,7 @@ export const OverviewPieCharts = ({ habits }: Props) => {
       <header className="text-sm font-medium">
         Currently tracking {habits.length} habits for this week
       </header>
-      <section className="xl: mx-auto grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
+      <section className="xl: 3xl:grid-cols-5 mx-auto grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {habits.map(({ name, daysCompleted, target }) => (
           <OverviewPieChartsCard
             name={name}

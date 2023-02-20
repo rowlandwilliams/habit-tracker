@@ -42,7 +42,7 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 id="email-address-icon"
-                className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-purple focus:ring-purple"
                 placeholder="Email"
               />
             </div>
@@ -68,14 +68,14 @@ const Login: NextPage = () => {
               <input
                 type="text"
                 id="email-address-icon"
-                className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-lg border border-zinc-700 bg-base-blue p-2.5 pl-10 text-sm  text-white placeholder-gray-400 focus:border-purple focus:ring-purple"
                 placeholder="Password"
               />
             </div>
           </section>
           <button
             type="submit"
-            className="rounded-sm bg-indigo-500 bg-opacity-[0.15] text-indigo-500 px-4 py-2 font-medium text-white"
+            className="rounded-sm bg-purple bg-opacity-[0.15] px-4 py-2 font-medium text-purple text-white"
           >
             Sign In
           </button>

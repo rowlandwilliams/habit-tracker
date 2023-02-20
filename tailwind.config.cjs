@@ -4,9 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "dark-blue": "#01050D",
-        "mid-blue": "#0e121a",
-        "base-blue": "#1B1F27",
+        "dark-blue": "#080A1C",
+        "mid-blue": "#0D1334",
+        "base-blue": "#192142",
+        'purple': '#5131FF'
       },
     },
   },

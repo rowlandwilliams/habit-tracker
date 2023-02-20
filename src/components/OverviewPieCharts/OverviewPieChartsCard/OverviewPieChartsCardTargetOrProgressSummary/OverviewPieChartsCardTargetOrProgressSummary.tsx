@@ -19,7 +19,7 @@ export const OverviewPieChartsCardTargetOrProgressSummary = ({
       <div>
         <span
           className={classNames("font-semibold", {
-            "text-indigo-500": !isProgress,
+            "text-purple": !isProgress,
             "text-teal-500": isProgress && targetReached,
             "text-rose-500": isProgress && !targetReached,
           })}

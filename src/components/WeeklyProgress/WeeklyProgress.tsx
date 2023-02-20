@@ -16,7 +16,7 @@ export const WeeklyProgress = ({ habits }: Props) => {
     <article className="max-w-max space-y-4 rounded-sm bg-mid-blue p-4">
       <header className="flex items-center justify-between ">
         <h1 className="text-sm font-medium">Weekly Progress</h1>
-        <section className="flex items-center gap-x-2">
+        <section className="flex items-center gap-x-4">
           <div className="flex items-center gap-x-2">
             <WeeklyProgressTableDayStatusIcon success /> Complete
           </div>

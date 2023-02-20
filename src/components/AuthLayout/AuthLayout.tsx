@@ -73,8 +73,8 @@ export const AuthLayout = ({ children }: Props) => {
                 )}
               >
                 {pathname.slice(1) === href && (
-                  <div className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full border border-indigo-500 p-0.5 ">
-                    <div className="h-1 w-1 rounded-full bg-indigo-500"></div>
+                  <div className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full border border-purple p-0.5 ">
+                    <div className="h-1 w-1 rounded-full bg-purple"></div>
                   </div>
                 )}
                 <Link
@@ -93,13 +93,12 @@ export const AuthLayout = ({ children }: Props) => {
           <section className="flex items-center justify-between border-b border-zinc-800 pb-2 font-medium">
             <h1 className="text-base">Overview</h1>
             <section className="flex items-center gap-x-2">
-              <div className="rounded-sm bg-indigo-500 bg-opacity-[0.15] p-2 text-indigo-500">
+              <div className="rounded-sm bg-purple bg-op0.15] p-2 text-white">
                 Upgrade
               </div>
-              <div className="mr-2 rounded-sm bg-teal-500 bg-opacity-[0.15] p-2 text-teal-500">
+              <div className="mr-2 rounded-sm bg-yellow-500 bg-opacity-[0.15] p-2 text-yellow-500">
                 12 trial days remaining
               </div>
-
               <div className="flex items-center gap-x-2 border-l border-zinc-800 pl-4">
                 <Image
                   src="/avatar.jpeg"
