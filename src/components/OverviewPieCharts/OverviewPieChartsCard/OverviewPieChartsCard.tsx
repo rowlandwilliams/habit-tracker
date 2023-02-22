@@ -23,17 +23,15 @@ export const OverviewPieChartsCard = ({
       key={name}
       className="space-y-4 rounded-sm border border-transparent bg-base-blue p-4 hover:border-zinc-700"
     >
-      <div className="flex justify-between">
-        <OverviewPieChartsCardPieChart
-          progressPc={progressPc}
-          targetPc={targetPc}
-        />
-        <OverviewPieChartsCardTitleAndTag
-          name={name}
-          daysCompleted={daysCompleted}
-          target={target}
-        />
-      </div>
+      <OverviewPieChartsCardTitleAndTag
+        name={name}
+        daysCompleted={daysCompleted}
+        target={target}
+      />
+      <OverviewPieChartsCardPieChart
+        progressPc={progressPc}
+        targetPc={targetPc}
+      />
       <div className="flex justify-between">
         <OverviewPieChartsCardTargetOrProgressSummary
           title="Target"

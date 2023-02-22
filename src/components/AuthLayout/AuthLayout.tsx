@@ -1,11 +1,10 @@
-import { Poppins } from "@next/font/google";
+import { Roboto } from "@next/font/google";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { ReactNode } from "react";
-import { useEffect } from "react";
 import { ClientOnly } from "../ClientOnly";
 import { Chevron } from "./Chevron";
 import { Logo } from "./Logo/Logo";
@@ -14,9 +13,9 @@ import { JournalIcon } from "./TabIcons/JournalIcon";
 import { MindfulMomentIcon } from "./TabIcons/MindfulMomentIcon";
 import { OverviewIcon } from "./TabIcons/OverviewIcon";
 
-const poppins = Poppins({
+const poppins = Roboto({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["100", "300", "400", "500", "700", "900"],
 });
 
 const tabs = [
@@ -55,11 +54,12 @@ export const AuthLayout = ({ children }: Props) => {
   const router = useRouter();
   const { pathname } = router;
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
-  }, [status]);
+  if (status === "unauthenticated") {
+    window.localStorage.setItem("path", router.asPath);
+
+    console.log("suuu", router.asPath);
+    router.push("/login");
+  }
 
   console.log(status);
 
@@ -67,7 +67,7 @@ export const AuthLayout = ({ children }: Props) => {
     return (
       <ClientOnly>
         <main
-          className={`flex h-screen bg-dark-blue text-xs font-light text-zinc-300 ${poppins.className}`}
+          className={`flex h-screen bg-dark-blue text-sm font-light text-zinc-300 ${poppins.className}`}
         >
           <article className="h-full w-64 flex-shrink-0 bg-mid-blue">
             <Logo />

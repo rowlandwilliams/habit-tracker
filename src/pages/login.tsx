@@ -2,32 +2,44 @@ import { type NextPage } from "next";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import type { FormEvent } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "../components/AuthLayout/Logo/Logo";
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isError, setIsError] = useState(false);
-  const { error } = useRouter().query;
+  const [error, setError] = useState(false);
+  const router = useRouter();
+  const callbackUrl = (router.query?.callbackUrl as string) ?? "/";
+  // console.log(callbackUrl);
+  const [prev, setPrev] = useState("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     // router.push("/");
-
+    // console.log(window.location.origin);
     const res = await signIn("credentials", {
       email: email,
       password: password,
+      callbackUrl: `${window.location.origin}/`,
       redirect: false,
     });
+
+    if (res?.error) {
+      setError(res.error);
+    } else {
+      prev ? router.push(prev) : router.push("/");
+    }
 
     console.log(res);
   };
 
-  if (error) return <div className="text-white">Error</div>;
-
-  console.log(email, password);
+  useEffect(() => {
+    setPrev(localStorage.getItem("path"));
+  }, []);
+  // console.log(suh, "prev");
+  console.log(prev, "yo");
   return (
     <section className="flex h-screen items-center justify-center">
       <div className="flex max-h-[500px] w-full flex-col items-center space-y-4 rounded-sm bg-mid-blue p-4 text-gray-200 md:w-96">
@@ -101,6 +113,7 @@ const Login: NextPage = () => {
             Sign In
           </button>
         </form>
+        {!!error && <p>{error}</p>}
       </div>
     </section>
   );

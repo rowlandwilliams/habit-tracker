@@ -14,7 +14,7 @@ export const OverviewPieChartsCardTitleAndTag = ({
 }: Props) => {
   const completed = daysCompleted >= target;
   return (
-    <section className="flex flex-col items-end space-y-2">
+    <section className="flex items-center justify-between">
       <h1 className="flex items-center gap-x-2 text-sm font-medium">
         <Image src="/habit.svg" width={16} height={16} alt="habit" />
         {name}

@@ -46,13 +46,10 @@ export const authOptions: NextAuthOptions = {
       // // return final_token
       // return params.token;
     },
+    // async redirect({ url, baseUrl }) {
+    //   console.log(url, baseUrl);
 
-    // session({ session, user }) {
-    //   if (session.user) {
-    //     session.user.id = user.id;
-    //     // session.user.role = user.role; <-- put other properties on the session here
-    //   }
-    //   return session;
+    //   return baseUrl;
     // },
   },
   adapter: PrismaAdapter(prisma),
