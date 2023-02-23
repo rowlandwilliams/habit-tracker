@@ -2,17 +2,16 @@ import { type NextPage } from "next";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import type { FormEvent } from "react";
-import { useEffect, useState } from "react";
-import { Logo } from "../components/AuthLayout/Logo/Logo";
+import { useState } from "react";
+import { usePreviousRoute } from "../../hooks/usePreviousRoute";
+import { Logo } from "../components/AuthLayout/AuthLayoutNavBar/Logo/Logo";
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const router = useRouter();
-  const callbackUrl = (router.query?.callbackUrl as string) ?? "/";
-  // console.log(callbackUrl);
-  const [prev, setPrev] = useState("");
+  const previousRoute = usePreviousRoute();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -29,24 +28,17 @@ const Login: NextPage = () => {
     if (res?.error) {
       setError(res.error);
     } else {
-      prev ? router.push(prev) : router.push("/");
+      previousRoute ? void router.push(previousRoute) : void router.push("/");
     }
-
-    console.log(res);
   };
 
-  useEffect(() => {
-    setPrev(localStorage.getItem("path"));
-  }, []);
-  // console.log(suh, "prev");
-  console.log(prev, "yo");
   return (
     <section className="flex h-screen items-center justify-center">
       <div className="flex max-h-[500px] w-full flex-col items-center space-y-4 rounded-sm bg-mid-blue p-4 text-gray-200 md:w-96">
         <Logo />
         <form
           className="flex w-full flex-col items-center space-y-8"
-          onSubmit={(e) => handleSubmit(e)}
+          onSubmit={(e) => void handleSubmit(e)}
         >
           <section className="w-full space-y-2">
             <label
@@ -108,7 +100,7 @@ const Login: NextPage = () => {
           </section>
           <button
             type="submit"
-            className="rounded-sm bg-purple bg-opacity-[0.15] px-4 py-2 font-medium text-purple text-white"
+            className="rounded-sm bg-purple bg-opacity-[0.15] px-4 py-2 font-medium text-white"
           >
             Sign In
           </button>

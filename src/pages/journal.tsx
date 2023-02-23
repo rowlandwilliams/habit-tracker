@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
 import type { ReactElement } from "react";
 import { AuthLayout } from "../components/AuthLayout/AuthLayout";
 
-const Journal: NextPage = () => {
+const Journal = () => {
   return <div>habits manager</div>;
 };
 

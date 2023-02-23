@@ -1,4 +1,3 @@
-import { type NextPage } from "next";
 import Head from "next/head";
 import type { ReactElement } from "react";
 import { AuthLayout } from "../components/AuthLayout/AuthLayout";
@@ -16,7 +15,7 @@ const habits = [
   { name: "Eat Healthy", daysCompleted: 7, target: 4 },
 ];
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <>
       <Head>

@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
+import type { ReactElement } from "react";
 import { AuthLayout } from "../components/AuthLayout/AuthLayout";
 
-const Protected: NextPage = () => {
+const Protected = () => {
   return (
     <>
       <h1>Protected Page</h1>
@@ -10,6 +10,6 @@ const Protected: NextPage = () => {
   );
 };
 
-Protected.getLayout = (page: ReactElement) => <AuthLayout >{page}</AuthLayout>;
+Protected.getLayout = (page: ReactElement) => <AuthLayout>{page}</AuthLayout>;
 
 export default Protected;

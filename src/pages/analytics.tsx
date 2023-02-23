@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
 import type { ReactElement } from "react";
 import { AuthLayout } from "../components/AuthLayout/AuthLayout";
 
-const Analytics: NextPage = () => {
+const Analytics = () => {
   return <div>analyse</div>;
 };
 

@@ -39,19 +39,8 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   callbacks: {
     jwt(params) {
-      console.log(params);
-      // update token
-      // if (params.user?.role) {
-      //   params.token.role = params.user.role;
-      // }
-      // // return final_token
-      // return params.token;
+      console.log(params, "jwt params");
     },
-    // async redirect({ url, baseUrl }) {
-    //   console.log(url, baseUrl);
-
-    //   return baseUrl;
-    // },
   },
   secret: env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
@@ -59,13 +48,13 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       type: "credentials",
       credentials: {},
-      authorize(credentials, req) {
+      authorize(credentials) {
         const { email, password } = credentials as {
           email: string;
           password: string;
         };
 
-        if (email !== "admin@email.com" || password !== "password") return null;
+        if (email !== "admin@email.com" || password !== "suhdude") return null;
 
         return { id: "1", name: "Admin", email: "admin@email.com" };
       },
