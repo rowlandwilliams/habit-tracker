@@ -1,8 +1,9 @@
+import { protectedProcedure } from './../trpc';
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const habitRouter = createTRPCRouter({
-  getAll: publicProcedure.query(({ ctx }) => {
+  getAll: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.habit.findMany();
   }),
   addHabit: publicProcedure

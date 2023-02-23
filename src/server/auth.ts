@@ -6,6 +6,7 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { env } from "../env/server.mjs";
 import { prisma } from "./db";
 
 /**
@@ -52,6 +53,7 @@ export const authOptions: NextAuthOptions = {
     //   return baseUrl;
     // },
   },
+  secret: env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({

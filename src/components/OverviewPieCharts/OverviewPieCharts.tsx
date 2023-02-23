@@ -1,3 +1,4 @@
+import { api } from "../../utils/api";
 import { OverviewPieChartsCard } from "./OverviewPieChartsCard/OverviewPieChartsCard";
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export const OverviewPieCharts = ({ habits }: Props) => {
+  const habitss = api.habit.getAll.useQuery();
   return (
     <article className="space-y-4 rounded-sm bg-mid-blue p-4">
       <header className="flex items-center justify-between ">
@@ -17,7 +19,7 @@ export const OverviewPieCharts = ({ habits }: Props) => {
           <button className="flex items-center gap-x-2 rounded-2xl bg-purple px-4 py-0.5 font-medium text-white">
             <span>+</span> Add Habit
           </button>
-          <button className="flex items-center gap-x-2 rounded-2xl bg-yellow-500 px-4 bg-opacity-[0.15] py-0.5 font-medium text-yellow-500">
+          <button className="flex items-center gap-x-2 rounded-2xl bg-yellow-500 bg-opacity-[0.15] px-4 py-0.5 font-medium text-yellow-500">
             <span>-</span> Delete Habit
           </button>
         </section>
