@@ -23,9 +23,7 @@ export const AuthLayoutPageHeader = ({ children }: Props) => {
           >
             Sign Out
           </button>
-          <div className="mr-2 rounded-sm bg-yellow-500 bg-opacity-[0.15] p-2 text-yellow-500">
-            12 trial days remaining
-          </div>
+         
           <div className="flex items-center gap-x-2 border-l border-zinc-800 pl-4">
             <Image
               src="/avatar.jpeg"

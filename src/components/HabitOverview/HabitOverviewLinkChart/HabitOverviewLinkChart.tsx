@@ -1,17 +1,21 @@
 import { api } from "../../../utils/api";
 import { HabitOverviewLinkChartCircles } from "./HabitOverviewLinkChartCircles/HabitOverviewLinkChartCircles";
+import { HabitOverviewLinkChartDefs } from "./HabitOverviewLinkChartDefs/HabitOverviewLinkChartDefs";
+import { HabitOverviewLinkChartLabels } from "./HabitOverviewLinkChartLabels/HabitOverviewLinkChartLabels";
 import { HabitOverviewLinkChartLines } from "./HabitOverviewLinkChartLines/HabitOverviewLinkChartLines";
 
-const nDays = 31;
-const graphHeight = 80;
-const quarterHeight = graphHeight / 4;
-const threeQuarterHeight = graphHeight * 0.75;
+const svgHeight = 160;
+const textHeight = 10;
+const graphHeight = svgHeight - textHeight;
+const topCirclesY = 20;
+const bottomCirclesY = graphHeight - topCirclesY;
 
 interface Props {
   graphWidth: number;
+  nDays: number;
 }
 
-export const HabitOverviewLinkChart = ({ graphWidth }: Props) => {
+export const HabitOverviewLinkChart = ({ graphWidth, nDays }: Props) => {
   const dayWidth = graphWidth / nDays;
 
   const habitQuery = api.habitData.getNDays.useQuery({
@@ -23,25 +27,25 @@ export const HabitOverviewLinkChart = ({ graphWidth }: Props) => {
 
   const { data } = habitQuery;
   return (
-    <svg width={graphWidth} height={graphHeight} className="rounded-sm">
-      <defs>
-        <linearGradient id="line-gradient" gradientTransform="rotate(90)">
-          <stop offset="5%" stop-color="#14b8a6" />
-          <stop offset="95%" stop-color="#f43f5e" />
-        </linearGradient>
-      </defs>
+    <svg width={graphWidth} height={svgHeight} className="rounded-sm">
+      <HabitOverviewLinkChartDefs />
       <HabitOverviewLinkChartLines
         data={data}
         dayWidth={dayWidth}
-        quarterHeight={quarterHeight}
-        threeQuarterHeight={threeQuarterHeight}
+        bottomCirclesY={bottomCirclesY}
+        topCirclesY={topCirclesY}
         nDays={nDays}
       />
       <HabitOverviewLinkChartCircles
         data={data}
         dayWidth={dayWidth}
+        bottomCirclesY={bottomCirclesY}
+        topCirclesY={topCirclesY}
+      />
+      <HabitOverviewLinkChartLabels
+        data={data}
+        dayWidth={dayWidth}
         graphHeight={graphHeight}
-        quarterHeight={quarterHeight}
       />
     </svg>
   );

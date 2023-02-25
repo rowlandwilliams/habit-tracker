@@ -27,12 +27,17 @@ export const habitDataRouter = createTRPCRouter({
         nDays: z.number(),
       })
     )
-    .query(({ input, ctx }) => {
+    .query(async ({ input, ctx }) => {
       const { habitId, nDays } = input;
+      const today = new Date();
       const nDaysAgo = new Date(today.setDate(today.getDate() - nDays));
-      return ctx.prisma.habitData.findMany({
+
+      const data = await ctx.prisma.habitData.findMany({
         where: { date: { gte: nDaysAgo }, habitId },
+        orderBy: { date: "asc" },
       });
+
+      return data;
     }),
 });
 
