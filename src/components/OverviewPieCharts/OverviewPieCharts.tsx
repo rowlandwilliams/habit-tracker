@@ -1,4 +1,3 @@
-import { api } from "../../utils/api";
 import { OverviewPieChartsCard } from "./OverviewPieChartsCard/OverviewPieChartsCard";
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
 }
 
 export const OverviewPieCharts = ({ habits }: Props) => {
-  const habitss = api.habit.getAll.useQuery();
   return (
     <article className="space-y-4 rounded-sm bg-mid-blue p-4">
       <header className="flex items-center justify-between ">
@@ -27,7 +25,7 @@ export const OverviewPieCharts = ({ habits }: Props) => {
       <section className="xl: 3xl:grid-cols-5 mx-auto grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {habits.map(({ name, daysCompleted, target }) => (
           <OverviewPieChartsCard
-            name={name}
+            habitName={name}
             daysCompleted={daysCompleted}
             target={target}
             key={name}
