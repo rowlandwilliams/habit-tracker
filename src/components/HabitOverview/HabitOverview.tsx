@@ -1,12 +1,8 @@
 import type { HabitData } from "@prisma/client";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 import { useResponsiveGraphWidth } from "../../../hooks/useResponsiveGraphWidth";
 import { api } from "../../utils/api";
-
-interface Props {
-  habitId: number;
-  habitName: string;
-}
 
 const nDays = 31;
 const height = 80;
@@ -14,22 +10,24 @@ const r = 5;
 const inactiveR = r / 2;
 
 const getLineColor = (data: HabitData[], completed: boolean, i: number) => {
+  const nextDayIsEqual = data[i + 1]?.completed === completed;
   switch (true) {
-    case data[i + 1]?.completed !== completed:
-      return;
-    case completed:
+    case completed && nextDayIsEqual:
       return "stroke-teal-500";
-    default:
+    case !completed && nextDayIsEqual:
       return "stroke-rose-500";
   }
 };
 
-export const HabitOverview = ({ habitId, habitName }: Props) => {
+export const HabitOverview = () => {
+  const { query } = useRouter();
   const { ref, graphWidth } = useResponsiveGraphWidth();
   const habitQuery = api.habitData.getNDays.useQuery({
     habitId: 1,
     nDays,
   });
+
+  console.log(query);
 
   const dayWidth = graphWidth / nDays;
 
