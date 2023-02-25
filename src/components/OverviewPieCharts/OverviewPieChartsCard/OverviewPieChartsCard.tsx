@@ -4,12 +4,14 @@ import { OverviewPieChartsCardTargetOrProgressSummary } from "./OverviewPieChart
 import { OverviewPieChartsCardTitleAndTag } from "./OverviewPieChartsCardTitleAndTag/OverviewPieChartsCardTitleAndTag";
 
 interface Props {
+  habitId: number;
   habitName: string;
   daysCompleted: number;
   target: number;
 }
 
 export const OverviewPieChartsCard = ({
+  habitId,
   habitName,
   daysCompleted,
   target,
@@ -23,7 +25,7 @@ export const OverviewPieChartsCard = ({
     <Link
       href={{
         pathname: href,
-        query: { habitName },
+        query: { habitId, habitName },
       }}
       as={href}
       key={habitNameLowerCase}
