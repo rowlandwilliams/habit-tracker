@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -10,6 +10,7 @@ module.exports = {
         "mid-blue": "#0D1334",
         "base-blue": "#192142",
         purple: "#5131FF",
+        inactive: "#262E4F",
       },
       fontFamily: {
         helvetica: ["Josefin Sans", ...defaultTheme.fontFamily.sans],

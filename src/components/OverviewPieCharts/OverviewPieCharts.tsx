@@ -1,4 +1,3 @@
-import { api } from "../../utils/api";
 import { OverviewPieChartsCard } from "./OverviewPieChartsCard/OverviewPieChartsCard";
 
 interface Props {
@@ -6,7 +5,6 @@ interface Props {
 }
 
 export const OverviewPieCharts = ({ habits }: Props) => {
-  const userQuery = api.habit.getAll.useQuery();
   return (
     <article className="space-y-4 rounded-sm bg-mid-blue p-4">
       <header className="flex items-center justify-between ">

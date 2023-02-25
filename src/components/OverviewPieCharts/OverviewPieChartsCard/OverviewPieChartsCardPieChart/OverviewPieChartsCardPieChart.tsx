@@ -52,7 +52,7 @@ export const OverviewPieChartsCardPieChart = ({
                       <g key={`pie-arc-${i}`}>
                         <path
                           className={classNames("", {
-                            "fill-[#262E4F]": isRemainder,
+                            "fill-inactive": isRemainder,
                             "fill-rose-500": !isRemainder && !onTarget,
                             "fill-teal-500": !isRemainder && onTarget,
                           })}

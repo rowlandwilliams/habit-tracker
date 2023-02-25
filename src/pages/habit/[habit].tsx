@@ -14,6 +14,7 @@ const Habit = ({ habitId, habitName }: Props) => {
 
 export const getServerSideProps = (context: GetServerSidePropsContext) => {
   const { habitId, habitName } = context.query;
+  console.log(context.query);
   return { props: { habitId: habitId || null, habitName: habitName || null } };
 };
 

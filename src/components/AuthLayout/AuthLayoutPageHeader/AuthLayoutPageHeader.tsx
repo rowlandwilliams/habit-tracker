@@ -13,7 +13,7 @@ export const AuthLayoutPageHeader = ({ children }: Props) => {
     void signOut();
   };
   return (
-    <article className="flex-grow space-y-4 px-4 py-3">
+    <article className="flex-grow space-y-4 px-4 py-3 ">
       <section className="flex items-center justify-between border-b border-zinc-800 pb-2 font-medium">
         <h1 className="text-base">Overview</h1>
         <section className="flex items-center gap-x-2">
@@ -39,7 +39,7 @@ export const AuthLayoutPageHeader = ({ children }: Props) => {
           </div>
         </section>
       </section>
-      <section>{children}</section>
+      {children}
     </article>
   );
 };
