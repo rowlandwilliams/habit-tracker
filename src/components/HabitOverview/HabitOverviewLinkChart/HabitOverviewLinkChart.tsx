@@ -4,7 +4,7 @@ import { HabitOverviewLinkChartDefs } from "./HabitOverviewLinkChartDefs/HabitOv
 import { HabitOverviewLinkChartLabels } from "./HabitOverviewLinkChartLabels/HabitOverviewLinkChartLabels";
 import { HabitOverviewLinkChartLines } from "./HabitOverviewLinkChartLines/HabitOverviewLinkChartLines";
 
-const svgHeight = 160;
+const svgHeight = 100;
 const textHeight = 10;
 const graphHeight = svgHeight - textHeight;
 const topCirclesY = 20;

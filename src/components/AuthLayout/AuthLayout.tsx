@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { usePreviousRoute } from "../../../hooks/usePreviousRoute";
 import { ClientOnly } from "../ClientOnly";
 import { AuthLayoutNavBar } from "./AuthLayoutNavBar/AuthLayoutNavBar";
-import { AuthLayoutPageHeader } from "./AuthLayoutPageHeader/AuthLayoutPageHeader";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -36,10 +35,12 @@ export const AuthLayout = ({ children }: Props) => {
   return (
     <ClientOnly>
       <main
-        className={`flex h-screen bg-dark-blue text-sm font-light text-zinc-300 ${roboto.className}`}
+        className={`flex flex-col h-screen bg-dark-blue text-sm text-zinc-300 ${roboto.className}`}
       >
         <AuthLayoutNavBar pathname={pathname} />
-        <AuthLayoutPageHeader>{children}</AuthLayoutPageHeader>
+        <article className="flex-grow overflow-y-hidden p-6">
+          {children}
+        </article>
       </main>
     </ClientOnly>
   );

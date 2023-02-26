@@ -1,9 +1,9 @@
 import { Pie } from "@visx/shape";
 import classNames from "classnames";
 
-const dim = 150;
+const dim = 120;
 const radius = dim / 2;
-const donutThickness = 5;
+const donutThickness = 3;
 const innerPadding = 6;
 
 interface Props {
@@ -19,12 +19,11 @@ export const OverviewPieChartsCardPieChart = ({
   const greaterThanProgress = progressRemainder > progressPc;
   const pieData =
     progressPc === 100 ? [progressPc] : [progressPc, progressRemainder];
-
   const targetRemainder = 100 - targetPc;
   const greaterThanTarget = targetRemainder > targetPc;
   const targetData = targetPc === 100 ? [targetPc] : [targetPc, 100 - targetPc];
-
   const onTarget = progressPc >= targetPc;
+
   return (
     <div className="flex justify-center">
       <svg width={dim} height={dim}>

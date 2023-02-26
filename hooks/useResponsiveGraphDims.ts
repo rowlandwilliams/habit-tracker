@@ -1,12 +1,14 @@
 import debounce from "lodash.debounce";
 import { useEffect, useRef, useState } from "react";
 
-export const useResponsiveGraphWidth = () => {
+export const useResponsiveGraphDims = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [graphWidth, setGraphWidth] = useState(0);
+  const [graphHeight, setGraphHeight] = useState(0);
 
   const setGraphDims = debounce((current: HTMLDivElement) => {
     setGraphWidth(current.clientWidth);
+    setGraphHeight(current.clientHeight);
   }, 50);
 
   // on resize, update chart
@@ -21,5 +23,5 @@ export const useResponsiveGraphWidth = () => {
     }
   }, [setGraphDims]);
 
-  return { ref, graphWidth };
+  return { ref, graphWidth, graphHeight };
 };

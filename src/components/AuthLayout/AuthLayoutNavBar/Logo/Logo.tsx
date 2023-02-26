@@ -24,7 +24,7 @@ export const Logo = () => {
             />
           </svg>
         </div>
-        <span className="gap-x-0.5 text-lg font-semibold">lifeview</span>
+        <span className="gap-x-0.5 text-lg font-semibold">xuberance</span>
       </section>
       <span className="flex h-3 items-center rounded-2xl bg-teal-500 px-1 text-[0.5rem] font-bold text-zinc-800">
         BETA

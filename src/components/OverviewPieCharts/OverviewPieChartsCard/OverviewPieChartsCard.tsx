@@ -29,28 +29,28 @@ export const OverviewPieChartsCard = ({
       }}
       as={href}
       key={habitNameLowerCase}
-      className="space-y-4 rounded-sm border border-transparent bg-base-blue p-4 hover:border-zinc-700"
+      className="w-80 flex-shrink-0 space-y-4 rounded-sm border border-base-blue  p-4 hover:border-purple"
     >
-      <OverviewPieChartsCardTitleAndTag
-        name={habitName}
-        daysCompleted={daysCompleted}
-        target={target}
-      />
-      <OverviewPieChartsCardPieChart
-        progressPc={progressPc}
-        targetPc={targetPc}
-      />
-      <div className="flex justify-between">
-        <OverviewPieChartsCardTargetOrProgressSummary
-          title="Target"
-          nDays={target}
+        <OverviewPieChartsCardTitleAndTag
+          name={habitName}
+          daysCompleted={daysCompleted}
+          target={target}
         />
-        <OverviewPieChartsCardTargetOrProgressSummary
-          title="Progress"
-          nDays={daysCompleted}
-          targetReached={targetReached}
-          isProgress
+        <OverviewPieChartsCardPieChart
+          progressPc={progressPc}
+          targetPc={targetPc}
         />
+        <div className="flex justify-between">
+          <OverviewPieChartsCardTargetOrProgressSummary
+            title="Target"
+            nDays={target}
+          />
+          <OverviewPieChartsCardTargetOrProgressSummary
+            title="Progress"
+            nDays={daysCompleted}
+            targetReached={targetReached}
+            isProgress
+          />
       </div>
     </Link>
   );

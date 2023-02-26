@@ -13,12 +13,12 @@ interface Props {
 export const WeeklyProgressTable = ({ days, habits }: Props) => {
   return (
     <section className="overflow-hidden rounded-sm">
-      <table className="bg-base-blue text-left">
+      <table className="text-left">
         <thead>
           <tr>
             <th className="w-44 p-2 font-medium">Habit</th>
             {days.map((day) => (
-              <th className="w-12 text-center font-medium" key={day}>
+              <th className="w-16 text-center font-medium" key={day}>
                 {day}
               </th>
             ))}
