@@ -1,4 +1,4 @@
-import { angleToCoord } from "../common/angleToCoord";
+import { angleToCoord } from "./angleToCoord";
 
 /**
  * Generates the coordinates of the points along the nVertices axis lines (one for each indicator originating from the center)

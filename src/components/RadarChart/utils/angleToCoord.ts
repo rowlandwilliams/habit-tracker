@@ -1,4 +1,3 @@
-import { radialScale } from "../GridLines/radialScale";
 
 /**
  * This function uses trigonometry to calulcate the end coordinate of each axis originating from the center of the chart
@@ -9,6 +8,8 @@ import { radialScale } from "../GridLines/radialScale";
  * @param {number[]} domainArray this is used to define the domain of the scale
  * @param {number[]} rangeArray this is used to define the range of the scale
  */
+
+import { radialScale } from "./radialScale";
 
 interface Props {
   angle: number;

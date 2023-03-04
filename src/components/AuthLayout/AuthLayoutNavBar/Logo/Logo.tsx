@@ -7,10 +7,10 @@ export const Logo = () => {
         <div className="max-w-max rounded-full bg-gradient-to-b from-purple to-teal-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={22}
-            height={22}
+            width={26}
+            height={26}
             viewBox="0 0 68 48"
-            className="fill-zinc-800"
+            className="fill-mid-blue"
           >
             <mask id="a">
               <path d="M24.792 46c-.84 0-1.6-.239-2.283-.716-.682-.478-1.154-1.088-1.416-1.83l-7.635-18.146H0v-4.775h16.764l8.028 19.18L39.509 2.547c.263-.743.735-1.353 1.417-1.83A3.888 3.888 0 0 1 43.208 0c.84 0 1.6.239 2.283.716.682.478 1.154 1.088 1.416 1.83l7.635 17.987H68v4.775H51.236l-8.028-19.02-14.717 37.165c-.263.743-.735 1.353-1.417 1.83a3.889 3.889 0 0 1-2.282.717Z" />
@@ -24,7 +24,7 @@ export const Logo = () => {
             />
           </svg>
         </div>
-        <span className="gap-x-0.5 text-lg font-semibold">xuberance</span>
+        <span className="gap-x-0.5 text-lg font-semibold">lifelens</span>
       </section>
       <span className="flex h-3 items-center rounded-2xl bg-teal-500 px-1 text-[0.5rem] font-bold text-zinc-800">
         BETA

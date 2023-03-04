@@ -13,23 +13,15 @@ const habits = [
   { name: "Drawing", daysCompleted: 3, target: 7 },
   { name: "Connect with friends", daysCompleted: 2, target: 1 },
   { name: "Code", daysCompleted: 5, target: 2 },
-  { name: "Send it", daysCompleted: 3, target: 7 },
-  { name: "Make bed", daysCompleted: 5, target: 2 },
-  { name: "No Phone", daysCompleted: 3, target: 7 },
 ];
-
-const numbers = [1, 2, 3];
-
-const doubleNumbers = numbers.map((number) => number * 2);
 
 const Home = () => {
   const habitQuery = api.habit.getAll.useQuery();
 
   if (!habitQuery.data) return <div>loading</div>;
 
-  const { data } = habitQuery;
+  const { data, isLoading } = habitQuery;
 
-  console.log(doubleNumbers);
   return (
     <>
       <Head>
