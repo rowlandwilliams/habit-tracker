@@ -1,5 +1,11 @@
+import { curveCatmullRomClosed, line } from "d3-shape";
 import { getLevelCoords } from "./getLevelCoords";
 import { levelCoordsToDiagonal } from "./levelCoordsToDiagonal";
+
+export const lineGenerator = line()
+  .x((d) => d[0])
+  .y((d) => d[1])
+  .curve(curveCatmullRomClosed);
 
 export const getDiagonalLineData = (
   days: number[],

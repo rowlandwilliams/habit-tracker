@@ -23,47 +23,30 @@ export const AuthLayoutNavBar = ({ pathname }: Props) => {
     void signOut();
   };
   return (
-    <section className="flex items-center justify-between bg-mid-blue h-14">
-      <article className=" flex flex-shrink-0 items-center gap-x-4">
+    <section className="flex h-14 items-center justify-between pr-4">
+      <article className=" flex flex-shrink-0 items-center ">
         <Logo />
         <nav className="flex">
           {tabs.map(({ title, href, icon }) => (
             <div
               key={title}
-              className={classNames(
-                "relative w-44 cursor-pointer py-4 text-sm",
-                {
-                  "bg-gradient-to-t from-base-blue font-normal":
-                    pathname.slice(1) === href,
-                  "text-gray-600 hover:text-gray-200":
-                    pathname.slice(1) !== href,
-                }
-              )}
+              className={classNames("relative cursor-pointer py-4 text-sm", {
+                "text-gray-600 hover:text-gray-200": pathname.slice(1) !== href,
+              })}
             >
-              {pathname.slice(1) === href && (
-                <div className="absolute top-1/2 right-4 -translate-y-1/2 rounded-full border border-purple p-0.5 ">
-                  <div className="h-1 w-1 rounded-full bg-purple"></div>
-                </div>
-              )}
               <Link
                 href={`/${href}`}
                 passHref
                 className="flex items-center gap-x-2 px-5"
               >
                 {icon}
-                {title}
               </Link>
             </div>
           ))}
         </nav>
       </article>
       <section className="flex items-center gap-x-2">
-        <button
-          className="bg-op0.15] rounded-sm bg-purple p-2 text-white"
-          onClick={() => handleSignOut()}
-        >
-          Sign Out
-        </button>
+        <button className="w-4  bg-gradient-to-t rounded-sm from-blue-600 to-fuchsia-500 h-4" onClick={() => handleSignOut()}></button>
       </section>
     </section>
   );
