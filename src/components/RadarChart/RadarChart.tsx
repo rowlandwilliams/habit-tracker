@@ -18,7 +18,12 @@ export const RadarChart = () => {
     <article className="flex w-full flex-col">
       {moods && <RadarChartMoodSelector moods={moods} />}
       <section ref={ref} className="w-full flex-grow">
-        <RadarChartSvg data={data} graphDim={graphDim} nVertices={nVertices} />
+        <RadarChartSvg
+          data={data}
+          graphDim={graphDim}
+          moods={moods}
+          nVertices={nVertices}
+        />
       </section>
     </article>
   );
