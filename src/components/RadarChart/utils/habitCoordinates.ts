@@ -4,7 +4,7 @@ export const getHabitCoordinates = ({
   moodData,
   nVertices,
   graphDim,
-  nDays,
+  nLevels,
 }: {
   moodData: {
     date: string;
@@ -17,7 +17,7 @@ export const getHabitCoordinates = ({
   }[];
   nVertices: number;
   graphDim: number;
-  nDays: number;
+  nLevels: number;
 }) => {
   const half = graphDim / 2;
   return moodData.map(({ date, moods }) => ({
@@ -28,7 +28,7 @@ export const getHabitCoordinates = ({
         angle,
         value: mood.score,
         width: graphDim,
-        domainArray: [0, nDays],
+        domainArray: [0, nLevels],
         rangeArray: [0, half],
       });
 
