@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useResponsiveGraphDims } from "../../../hooks/useResponsiveGraphDims";
 import { api } from "../../utils/api";
 import { RadarChartMoodSelector } from "./RadarChartMoodSelector/RadarChartMoodSelector";
@@ -8,15 +9,27 @@ export const RadarChart = () => {
   const { ref, graphWidth, graphHeight } = useResponsiveGraphDims();
   const graphDim = Math.min(graphWidth, graphHeight);
 
+  const { moods } = (data && data[0]) || { moods: [] };
+  const nVertices = moods.length;
+  const [activeMoods, setActiveMoods] = useState(moods.map(({ id }) => id));
+
+  const handleMoodClick = (moodId: number) =>
+    activeMoods.includes(moodId)
+      ? setActiveMoods(activeMoods.filter((id) => id !== moodId))
+      : setActiveMoods([...activeMoods, moodId]);
+
   if (isLoading) return <div>Loading</div>;
   if (isError) return <div>Error! ${error.message}</div>;
 
-  const { moods } = data[0] || { moods: [] };
-  const nVertices = moods.length;
-
   return (
     <article className="flex w-full flex-col">
-      {moods && <RadarChartMoodSelector moods={moods} />}
+      {moods && activeMoods && (
+        <RadarChartMoodSelector
+          moods={moods}
+          activeMoods={activeMoods}
+          handleMoodClick={handleMoodClick}
+        />
+      )}
       <section ref={ref} className="w-full flex-grow">
         <RadarChartSvg
           data={data}
