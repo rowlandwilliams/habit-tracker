@@ -1,15 +1,9 @@
+import type { Mood } from "@prisma/client";
 import React from "react";
 import { angleToCoord } from "../../utils/angleToCoord";
 
 interface Props {
-  moods:
-    | {
-        id: number;
-        name: string;
-        sentiment: string;
-        score: number;
-      }[]
-    | never[];
+  moods: Mood[];
   nVertices: number;
   visDim: number;
   nLevels: number;

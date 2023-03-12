@@ -11,6 +11,27 @@ const yearOfDates = [...Array(365)].map((day, i) => {
 
   return today;
 });
+const weekOfDates = [...Array(7)].map((day, i) => {
+  const today = new Date();
+  today.setDate(today.getDate() - 1 * i);
+
+  return today;
+});
+
+const weekMoods = [
+  { name: "Depressed", data: [9, 9, 7, 6, 6, 9, 10] },
+  { name: "Motivated", data: [2, 1, 2, 3, 1, 0, 0] },
+  { name: "Creative", data: [4, 1, 5, 3, 2, 0, 2] },
+  { name: "Anxious", data: [9, 7, 6, 8, 10, 9, 8] },
+  { name: "Tired", data: [10, 10, 10, 10, 9, 8, 7] },
+  { name: "Positive", data: [1, 1, 2, 3, 1, 0, 0] },
+  { name: "Fearful", data: [9, 8, 7, 7, 7, 9, 8] },
+  { name: "Angry", data: [6, 6, 7, 5, 5, 4, 6] },
+  { name: "Fulfilled", data: [0, 4, 5, 2, 1, 0, 0] },
+  { name: "Relaxed", data: [1, 1, 2, 3, 1, 0, 0] },
+  { name: "Bored", data: [10, 9, 8, 6, 6, 7, 8] },
+  { name: "Calm", data: [10, 9, 8, 6, 6, 7, 8] },
+];
 
 const prisma = new PrismaClient();
 
@@ -58,6 +79,7 @@ async function main() {
       { name: "Fulfilled", moodSentimentId: 1 },
       { name: "Relaxed", moodSentimentId: 1 },
       { name: "Bored", moodSentimentId: 2 },
+      { name: "Calm", moodSentimentId: 1 },
     ],
   });
 
@@ -75,10 +97,10 @@ async function main() {
     .flat();
 
   const sampleMoodData = moods
-    .map(({ id }) =>
-      yearOfDates.map((date) => ({
+    .map(({ id, name }) =>
+      weekOfDates.map((date, i) => ({
         date,
-        score: intFromZeroToTen(),
+        score: weekMoods.find((mood) => mood.name === name)?.data[i] as number,
         moodId: id,
       }))
     )

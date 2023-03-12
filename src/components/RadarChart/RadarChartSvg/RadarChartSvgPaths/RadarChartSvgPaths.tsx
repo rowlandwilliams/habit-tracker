@@ -1,11 +1,11 @@
 import { scaleSequential } from "d3-scale";
-import { interpolateCool } from "d3-scale-chromatic";
-import { curveCardinalClosed, line } from "d3-shape";
+import { interpolateCool, interpolatePlasma } from "d3-scale-chromatic";
+import { curveLinearClosed, line } from "d3-shape";
 
 const lineGenerator = line()
   .x((d) => d[0])
   .y((d) => d[1])
-  .curve(curveCardinalClosed);
+  .curve(curveLinearClosed);
 
 interface Props {
   pathCoords: {
@@ -23,7 +23,7 @@ interface Props {
 }
 
 export const RadarChartSvgPaths = ({ pathCoords, minDate, maxDate }: Props) => {
-  const colorScale = scaleSequential(interpolateCool).domain([
+  const colorScale = scaleSequential(interpolatePlasma).domain([
     minDate,
     maxDate,
   ]);

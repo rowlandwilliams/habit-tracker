@@ -2,6 +2,7 @@ import { moodDataRouter } from "./routers/moodData";
 import { habitRouter } from "./routers/habit";
 import { habitDataRouter } from "./routers/habitData";
 import { createTRPCRouter } from "./trpc";
+import { moodRouter } from "./routers/mood";
 
 /**
  * This is the primary router for your server.
@@ -11,6 +12,7 @@ import { createTRPCRouter } from "./trpc";
 export const appRouter = createTRPCRouter({
   habit: habitRouter,
   habitData: habitDataRouter,
+  mood: moodRouter,
   moodData: moodDataRouter,
 });
 

@@ -1,3 +1,4 @@
+import type { Mood } from "@prisma/client";
 import { getDiagonalLineData } from "../utils";
 import { getHabitCoordinates } from "../utils/habitCoordinates";
 import { RadarChartSvgBaseLines } from "./RadarChartSvgBaseLines/RadarChartSvgBaseLines";
@@ -22,14 +23,7 @@ interface Props {
       score: number;
     }[];
   }[];
-  moods:
-    | {
-        id: number;
-        name: string;
-        sentiment: string;
-        score: number;
-      }[]
-    | never[];
+  moods: Mood[];
 }
 
 export const RadarChartSvg = ({ graphDim, nVertices, data, moods }: Props) => {
