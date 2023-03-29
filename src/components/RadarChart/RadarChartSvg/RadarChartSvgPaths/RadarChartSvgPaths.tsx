@@ -1,11 +1,11 @@
 import { scaleSequential } from "d3-scale";
-import { interpolateCool, interpolatePlasma } from "d3-scale-chromatic";
-import { curveLinearClosed, line } from "d3-shape";
+import { interpolatePlasma } from "d3-scale-chromatic";
+import { curveCatmullRomClosed, line } from "d3-shape";
 
 const lineGenerator = line()
   .x((d) => d[0])
   .y((d) => d[1])
-  .curve(curveLinearClosed);
+  .curve(curveCatmullRomClosed);
 
 interface Props {
   pathCoords: {

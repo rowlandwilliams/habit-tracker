@@ -1,4 +1,5 @@
 import type { Mood } from "@prisma/client";
+import { api } from "../../../utils/api";
 import { getDiagonalLineData } from "../utils";
 import { getHabitCoordinates } from "../utils/habitCoordinates";
 import { RadarChartSvgBaseLines } from "./RadarChartSvgBaseLines/RadarChartSvgBaseLines";
@@ -13,40 +14,46 @@ const minDate = (dates: Date[]) => new Date(Math.min(...dates.map(Number)));
 
 interface Props {
   graphDim: number;
-  nVertices: number;
-  data: {
-    date: string;
-    moods: {
-      id: number;
-      name: string;
-      sentiment: string;
-      score: number;
-    }[];
-  }[];
+  activeMoods: number[];
   moods: Mood[];
 }
 
-export const RadarChartSvg = ({ graphDim, nVertices, data, moods }: Props) => {
+export const RadarChartSvg = ({ graphDim, activeMoods, moods }: Props) => {
+  const { isError, data, error, isPreviousData } = api.moodData.getAll.useQuery(
+    activeMoods,
+    { keepPreviousData: true }
+  );
+
+  if (isError) return <div>Error! ${error.message}</div>;
+
+  const nVertices = activeMoods.length;
+
   const visDim = graphDim - padding;
   const lineData = getDiagonalLineData(levels, nVertices, visDim);
   const pathCoords = getHabitCoordinates({
-    moodData: data,
+    moodData: data || [],
     nVertices,
     nLevels,
     graphDim: visDim,
   });
-  const dates = data.map((day) => new Date(day.date));
+
+  console.log(isPreviousData);
+
+  const dates = data?.map((day) => new Date(day.date));
+  const labels = moods.filter((mood) => activeMoods.includes(mood.id));
   return (
     <svg width={graphDim} height={graphDim} className="mx-auto">
       <g transform={`translate(${padding / 2}, ${padding / 2})`}>
         <RadarChartSvgBaseLines lineData={lineData} />
-        <RadarChartSvgPaths
-          maxDate={maxDate(dates)}
-          minDate={minDate(dates)}
-          pathCoords={pathCoords}
-        />
+        {dates && (
+          <RadarChartSvgPaths
+            maxDate={maxDate(dates)}
+            minDate={minDate(dates)}
+            pathCoords={pathCoords}
+          />
+        )}
         <RadarChartSvgLabels
-          moods={moods}
+          moods={labels}
           nLevels={nLevels}
           nVertices={nVertices}
           visDim={visDim}
