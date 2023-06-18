@@ -1,41 +1,31 @@
 import { angleToCoord } from "./angleToCoord";
 
 export const getHabitCoordinates = ({
-  moodData,
+  habits,
+  isTarget,
   nVertices,
   graphDim,
-  nLevels,
+  nDays,
 }: {
-  moodData: {
-    date: string;
-    moods: {
-      id: number;
-      name: string;
-      sentiment: string;
-      score: number;
-    }[];
-  }[];
+  habits: { name: string; daysCompleted: number; target: number }[];
+  isTarget: boolean;
   nVertices: number;
   graphDim: number;
-  nLevels: number;
+  nDays: number;
 }) => {
   const half = graphDim / 2;
-  return moodData.map(({ date, moods }) => ({
-    date,
-    moods: moods.map((mood, i) => {
-      const angle = Math.PI / 2 + (2 * Math.PI * i) / nVertices;
-      const coords = angleToCoord({
-        angle,
-        value: mood.score,
-        width: graphDim,
-        domainArray: [0, nLevels],
-        rangeArray: [0, half],
-      });
+  return habits.map(({ name, target, daysCompleted }, i) => {
+    const angle = Math.PI / 2 + (2 * Math.PI * i) / nVertices;
+    const value = isTarget ? target : daysCompleted;
 
-      return {
-        ...mood,
-        coords,
-      };
-    }),
-  }));
+    const coords = angleToCoord({
+      angle,
+      value,
+      width: graphDim,
+      domainArray: [0, nDays],
+      rangeArray: [0, half],
+    });
+
+    return { habit: name, value, coords };
+  });
 };
