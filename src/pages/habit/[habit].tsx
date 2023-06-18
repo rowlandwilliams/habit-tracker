@@ -8,7 +8,7 @@ const Habit = () => {
     <section className="space-y-8">
       <HabitOverview />
       <div>
-        <HabitHeatMap />
+        {/* <HabitHeatMap /> */}
       </div>
     </section>
   );

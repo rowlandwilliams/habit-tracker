@@ -9,7 +9,7 @@
     "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,
-        "source.organizeImports": true
+        // "source.organizeImports": true
     },
     "typescript.tsserver.experimental.enableProjectDiagnostics": true,
     "editor.suggest.snippetsPreventQuickSuggestions": false

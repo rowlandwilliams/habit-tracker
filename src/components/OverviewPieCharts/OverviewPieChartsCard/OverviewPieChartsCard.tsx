@@ -23,34 +23,31 @@ export const OverviewPieChartsCard = ({
   const href = `/habit/${habitNameLowerCase.toLowerCase()}`;
   return (
     <Link
-      href={{
-        pathname: href,
-        query: { habitId, habitName },
-      }}
+      href={href}
       as={href}
       key={habitNameLowerCase}
       className="w-80 flex-shrink-0 space-y-4 rounded-sm border border-base-blue  p-4 hover:border-purple"
     >
-        <OverviewPieChartsCardTitleAndTag
-          name={habitName}
-          daysCompleted={daysCompleted}
-          target={target}
+      <OverviewPieChartsCardTitleAndTag
+        name={habitName}
+        daysCompleted={daysCompleted}
+        target={target}
+      />
+      <OverviewPieChartsCardPieChart
+        progressPc={progressPc}
+        targetPc={targetPc}
+      />
+      <div className="flex justify-between">
+        <OverviewPieChartsCardTargetOrProgressSummary
+          title="Target"
+          nDays={target}
         />
-        <OverviewPieChartsCardPieChart
-          progressPc={progressPc}
-          targetPc={targetPc}
+        <OverviewPieChartsCardTargetOrProgressSummary
+          title="Progress"
+          nDays={daysCompleted}
+          targetReached={targetReached}
+          isProgress
         />
-        <div className="flex justify-between">
-          <OverviewPieChartsCardTargetOrProgressSummary
-            title="Target"
-            nDays={target}
-          />
-          <OverviewPieChartsCardTargetOrProgressSummary
-            title="Progress"
-            nDays={daysCompleted}
-            targetReached={targetReached}
-            isProgress
-          />
       </div>
     </Link>
   );

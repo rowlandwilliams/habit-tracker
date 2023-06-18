@@ -13,19 +13,28 @@ const bottomCirclesY = graphHeight - topCirclesY;
 interface Props {
   graphWidth: number;
   nDays: number;
+  habitName: string;
 }
 
-export const HabitOverviewLinkChart = ({ graphWidth, nDays }: Props) => {
+export const HabitOverviewLinkChart = ({
+  graphWidth,
+  nDays,
+  habitName,
+}: Props) => {
   const dayWidth = graphWidth / nDays;
 
   const habitQuery = api.habitData.getNDays.useQuery({
-    habitId: 1,
+    habitName,
     nDays,
   });
 
+  console.log(habitName, "here");
   if (!habitQuery.data) return <div>loadin</div>;
 
   const { data } = habitQuery;
+
+  console.log(data, "yooooo");
+
   return (
     <svg width={graphWidth} height={svgHeight} className="rounded-sm">
       <HabitOverviewLinkChartDefs />
