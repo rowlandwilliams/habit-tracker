@@ -30,12 +30,12 @@ export const habitDataRouter = createTRPCRouter({
     .query(async ({ input, ctx }) => {
       const { habitName, nDays } = input;
 
-      console.log(habitName, 'hell')
+      console.log(habitName, "hell");
       const today = new Date();
       const nDaysAgo = new Date(today.setDate(today.getDate() - nDays));
 
       const data = await ctx.prisma.habitData.findMany({
-        where: { date: { gte: nDaysAgo }, habit: { name: habitName } },
+        where: { date: { gte: nDaysAgo }, habitId: 1 },
         orderBy: { date: "asc" },
       });
 
