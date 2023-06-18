@@ -2,7 +2,7 @@ import Head from "next/head";
 import type { ReactElement } from "react";
 import { AuthLayout } from "../components/AuthLayout/AuthLayout";
 import { OverviewPieCharts } from "../components/OverviewPieCharts/OverviewPieCharts";
-import { RadarChart } from "../components/RadarChart/MoodRadarChart";
+import { RadarChart } from "../components/MoodRadarChart/MoodRadarChart";
 import { WeeklyProgress } from "../components/WeeklyProgress/WeeklyProgress";
 import { api } from "../utils/api";
 
