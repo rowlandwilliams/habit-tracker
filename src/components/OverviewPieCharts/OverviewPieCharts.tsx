@@ -1,3 +1,4 @@
+import { api } from "../../utils/api";
 import { UiBox } from "../SHARED/UiBox/UiBox";
 import { OverviewPieChartsCard } from "./OverviewPieChartsCard/OverviewPieChartsCard";
 
@@ -6,12 +7,16 @@ interface Props {
 }
 
 export const OverviewPieCharts = ({ habits }: Props) => {
+  const { isLoading, data } = api.habit.getAll.useQuery();
+
+  if (isLoading) return <div>k</div>;
+
   return (
     <UiBox title="Weekly Overview">
-      <section className="flex gap-x-4 items-center">
-        {habits.map(({ name, daysCompleted, target }, i) => (
+      <section className="flex items-center gap-x-4">
+        {data.map(({ name, daysCompleted, target }, i) => (
           <OverviewPieChartsCard
-            habitId={i}
+            habitId={i + 1}
             habitName={name}
             daysCompleted={daysCompleted}
             target={target}

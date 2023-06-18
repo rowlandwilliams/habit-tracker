@@ -23,17 +23,19 @@ export const habitDataRouter = createTRPCRouter({
   getNDays: protectedProcedure
     .input(
       z.object({
-        habitId: z.number(),
+        habitName: z.string(),
         nDays: z.number(),
       })
     )
     .query(async ({ input, ctx }) => {
-      const { habitId, nDays } = input;
+      const { habitName, nDays } = input;
+
+      console.log(habitName, 'hell')
       const today = new Date();
       const nDaysAgo = new Date(today.setDate(today.getDate() - nDays));
 
       const data = await ctx.prisma.habitData.findMany({
-        where: { date: { gte: nDaysAgo }, habitId },
+        where: { date: { gte: nDaysAgo }, habit: { name: habitName } },
         orderBy: { date: "asc" },
       });
 
