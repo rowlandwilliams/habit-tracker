@@ -16,8 +16,9 @@ export const RadarChart = () => {
       ? setActiveMoods(activeMoods.filter((id) => id !== moodId))
       : setActiveMoods([...activeMoods, moodId]);
 
-  const { data: moodData } = api.mood.getAll.useQuery();
+  const { data: moodData, isError, isLoading } = api.mood.getAll.useQuery();
 
+  console.log(moodData, isError, isLoading);
   useEffect(() => {
     if (moodData) {
       setActiveMoods(moodData?.map(({ id }) => id));
@@ -25,7 +26,7 @@ export const RadarChart = () => {
   }, [moodData]);
 
   return (
-    <article className="flex w-full flex-col relative">
+    <article className="relative flex w-full flex-col">
       {moodData && (
         <RadarChartMoodSelector
           moods={moodData}

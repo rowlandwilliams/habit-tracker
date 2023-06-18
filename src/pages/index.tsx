@@ -16,12 +16,12 @@ const habits = [
 ];
 
 const Home = () => {
-  const habitQuery = api.habit.getAll.useQuery();
+  // const habitQuery = api.habit.getAll.useQuery();
+  // const { data, isLoading, isError } = habitQuery;
 
-  if (!habitQuery.data) return <div>loading</div>;
+  // if (isLoading) return <div>loadingihih</div>;
 
-  const { data, isLoading } = habitQuery;
-
+  // console.log(data, isLoading, isError);
   return (
     <>
       <Head>
